@@ -7,24 +7,24 @@ namespace Costos_por_procesos_y_ordenes.Clases
     public class OdenProduccion
     {
         private StreamWriter TxtRecibo;
-        public int i = 0;
+        public int contain = 0;
 
-        public void ClearArrayDecimal(decimal[,] Num)
+        public void ClearArrayDecimal(decimal[,] DimArrDecimal)
         {
-            for (int i = 0; i < Num.GetLength(0); i++)
+            for (int i = 0; i < DimArrDecimal.GetLength(0); i++)
             {
-                for (int j = 0; j < Num.GetLength(1); j++)
+                for (int j = 0; j < DimArrDecimal.GetLength(1); j++)
                 {
-                    Num[i, j] = 0;
+                    DimArrDecimal[i, j] = 0;
                 }
             }
         }
 
-        public void ClearArrayString(string[] Info)
+        public void ClearArrayString(string[] ArrInfo)
         {
-            for (int i = 0; i < Info.Length; i++)
+            for (int i = 0; i < ArrInfo.Length; i++)
             {
-                Info[i] = "";
+                ArrInfo[i] = "";
             }
         }
 
@@ -37,7 +37,7 @@ namespace Costos_por_procesos_y_ordenes.Clases
             }
             string DataTime = DateTime.Now.ToString("ddMMyyyy");
             string FolderDestiny = OpenFolder.SelectedPath;
-            string PathFolderDestiny = Path.Combine(FolderDestiny, $"Recibo de pedido Folio{i + DataTime}.txt");
+            string PathFolderDestiny = Path.Combine(FolderDestiny, $"Recibo de pedido Folio{contain + DataTime}.txt");
             using (TxtRecibo = new StreamWriter(PathFolderDestiny))
             {
                 TxtRecibo.WriteLine($"\t\t\t\t\tALESCA, S.A.");
@@ -49,16 +49,16 @@ namespace Costos_por_procesos_y_ordenes.Clases
                 TxtRecibo.WriteLine($"Unidad: \t{ReciboInfo[5]}\t\t\t\t\tFecha de terminación: \t{ReciboInfo[10]}\n");
                 TxtRecibo.WriteLine("\t\t\t\t\t\tCosto");
                 TxtRecibo.WriteLine($"\tConcepto\t\t\tTotal\t\tUnitario");
-                TxtRecibo.WriteLine($"Materia prima directa\t\t\t{string.Format("{0:C2}", DimArrCostos[0,0])}\t\t{string.Format("{0:C2}", DimArrCostos[0, 1])}");
+                TxtRecibo.WriteLine($"Materia prima directa\t\t\t{string.Format("{0:C2}", DimArrCostos[0,0])}\t{string.Format("{0:C2}", DimArrCostos[0, 1])}");
                 TxtRecibo.WriteLine($"Mano de obra directa\t\t\t{string.Format("{0:C2}", DimArrCostos[1, 0])}\t\t{string.Format("{0:C2}", DimArrCostos[1, 1])}");
-                TxtRecibo.WriteLine($"Costos primos\t\t\t\t{string.Format("{0:C2}", DimArrCostos[2, 0])}\t\t{string.Format("{0:C2}", DimArrCostos[2, 1])}");
+                TxtRecibo.WriteLine($"Costos primos\t\t\t\t{string.Format("{0:C2}", DimArrCostos[2, 0])}\t{string.Format("{0:C2}", DimArrCostos[2, 1])}");
                 TxtRecibo.WriteLine($"Cargos indirectos\t\t\t{string.Format("{0:C2}", DimArrCostos[3, 0])}\t\t{string.Format("{0:C2}", DimArrCostos[3, 1])}");
-                TxtRecibo.WriteLine($"Costos de producción\t\t\t{string.Format("{0:C2}", DimArrCostos[4, 0])}\t\t{string.Format("{0:C2}", DimArrCostos[4, 1])}\n");
+                TxtRecibo.WriteLine($"Costos de producción\t\t\t{string.Format("{0:C2}", DimArrCostos[4, 0])}\t{string.Format("{0:C2}", DimArrCostos[4, 1])}\n");
                 TxtRecibo.WriteLine($"Expedido por: {ReciboInfo[11]}.\tCalculado por: {ReciboInfo[12]}.\tContabilizada por: {ReciboInfo[13]}.");
             }
             TxtRecibo.Close();
             MessageBox.Show("Archivo de texto creado y guardado", "Informacion", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            i++;
+            contain++;
         }
     }
 }

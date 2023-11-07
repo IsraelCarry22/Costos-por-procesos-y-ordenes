@@ -141,66 +141,96 @@ namespace Costos_por_procesos_y_ordenes
 
         private void BtmCalcularTabla1_Click(object sender, EventArgs e)
         {
-            //Calculo de celdas(D, G y F) Tabla 1
-            //B * C = D
-            DimArrDPPU[0, 3] = DimArrDPPU[0, 1] * DimArrDPPU[0, 2];
-            DimArrDPPU[1, 3] = DimArrDPPU[1, 1] * DimArrDPPU[1, 2];
-            DimArrDPPU[2, 3] = DimArrDPPU[2, 1] * DimArrDPPU[2, 2];
+            try
+            {
+                //Calculo de celdas(D, G y F) Tabla 1
+                //B * C = D
+                DimArrDPPU[0, 3] = DimArrDPPU[0, 1] * DimArrDPPU[0, 2];
+                DimArrDPPU[1, 3] = DimArrDPPU[1, 1] * DimArrDPPU[1, 2];
+                DimArrDPPU[2, 3] = DimArrDPPU[2, 1] * DimArrDPPU[2, 2];
 
-            //E * F = G
-            DimArrDPPU[0, 6] = DimArrDPPU[0, 4] * DimArrDPPU[0, 5];
-            DimArrDPPU[1, 6] = DimArrDPPU[1, 4] * DimArrDPPU[1, 5];
-            DimArrDPPU[2, 6] = DimArrDPPU[2, 4] * DimArrDPPU[2, 5];
+                //E * F = G
+                DimArrDPPU[0, 6] = DimArrDPPU[0, 4] * DimArrDPPU[0, 5];
+                DimArrDPPU[1, 6] = DimArrDPPU[1, 4] * DimArrDPPU[1, 5];
+                DimArrDPPU[2, 6] = DimArrDPPU[2, 4] * DimArrDPPU[2, 5];
 
-            //A + D - G = F
-            DimArrDPPU[0, 7] = DimArrDPPU[0, 0] + DimArrDPPU[0, 3] - DimArrDPPU[0, 6];
-            DimArrDPPU[1, 7] = DimArrDPPU[1, 0] + DimArrDPPU[1, 3] - DimArrDPPU[1, 6];
-            DimArrDPPU[2, 7] = DimArrDPPU[2, 0] + DimArrDPPU[2, 3] - DimArrDPPU[2, 6];
+                //A + D - G = F
+                DimArrDPPU[0, 7] = DimArrDPPU[0, 0] + DimArrDPPU[0, 3] - DimArrDPPU[0, 6];
+                DimArrDPPU[1, 7] = DimArrDPPU[1, 0] + DimArrDPPU[1, 3] - DimArrDPPU[1, 6];
+                DimArrDPPU[2, 7] = DimArrDPPU[2, 0] + DimArrDPPU[2, 3] - DimArrDPPU[2, 6];
 
-            PrintTables(DimArrDPPU, DtgTabla1);
-            PrintTables(DimArrCCUP, DtgTabla2);
-            RowsPrintTable();
+                PrintTables(DimArrDPPU, DtgTabla1);
+                PrintTables(DimArrCCUP, DtgTabla2);
+                RowsPrintTable();
 
-            MenuTabla2.Enabled = true;
+                MenuTabla2.Enabled = true;
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("Puede que algun dato no sea valido, por favor corrigelo", "Información", MessageBoxButtons.OK, MessageBoxIcon.Question);
+                throw;
+            }
         }
 
         private void BtmCalcularTabla2_Click(object sender, EventArgs e)
         {
-            //Calculo de celdas(C, F y G) Tabla 2
-            //A + B = C
-            DimArrCCUP[0, 2] = DimArrCCUP[0, 0] + DimArrCCUP[0, 1];
-            DimArrCCUP[1, 2] = DimArrCCUP[1, 0] + DimArrCCUP[1, 1];
-            DimArrCCUP[2, 2] = DimArrCCUP[2, 0] + DimArrCCUP[2, 1];
+            try
+            {
+                //Calculo de celdas(C, F y G) Tabla 2
+                //A + B = C
+                DimArrCCUP[0, 2] = DimArrCCUP[0, 0] + DimArrCCUP[0, 1];
+                DimArrCCUP[1, 2] = DimArrCCUP[1, 0] + DimArrCCUP[1, 1];
+                DimArrCCUP[2, 2] = DimArrCCUP[2, 0] + DimArrCCUP[2, 1];
 
-            //Sumatoria de C
-            DimArrCCUP[3, 2] = DimArrCCUP[0, 2] + DimArrCCUP[1, 2] + DimArrCCUP[2, 2];
+                //Sumatoria de C
+                DimArrCCUP[3, 2] = DimArrCCUP[0, 2] + DimArrCCUP[1, 2] + DimArrCCUP[2, 2];
 
-            //D + E = F
-            DimArrCCUP[0, 5] = DimArrCCUP[0, 3] + DimArrCCUP[0, 4];
-            DimArrCCUP[1, 5] = DimArrCCUP[1, 3] + DimArrCCUP[1, 4];
-            DimArrCCUP[2, 5] = DimArrCCUP[2, 3] + DimArrCCUP[2, 4];
+                //D + E = F
+                DimArrCCUP[0, 5] = DimArrCCUP[0, 3] + DimArrCCUP[0, 4];
+                DimArrCCUP[1, 5] = DimArrCCUP[1, 3] + DimArrCCUP[1, 4];
+                DimArrCCUP[2, 5] = DimArrCCUP[2, 3] + DimArrCCUP[2, 4];
 
-            //C / F = G
-            DimArrCCUP[0, 6] = DimArrCCUP[0, 2] / DimArrCCUP[0, 5];
-            DimArrCCUP[1, 6] = DimArrCCUP[1, 2] / DimArrCCUP[1, 5];
-            DimArrCCUP[2, 6] = DimArrCCUP[2, 2] / DimArrCCUP[2, 5];
+                //Comprobacion de algunos datos en Cero
+                if (DimArrCCUP[0, 2] == 0 && DimArrCCUP[0, 5] == 0 && DimArrCCUP[1, 2] == 0 && DimArrCCUP[1, 5] == 0 && DimArrCCUP[2, 2] == 0 && DimArrCCUP[2, 5] == 0)
+                {
+                    MessageBox.Show("Puede que algun dato no sea valido o sea un cero, ya que se intenta dividir cero entre cero, por favor ingresa almenos un dato valido", "Información", MessageBoxButtons.OK, MessageBoxIcon.Question);
+                    return;
+                }
 
-            PrintTables(DimArrCCUP, DtgTabla2);
-            PrintTables(DimArrVIF, DtgTabla3);
-            PrintTables(DimArrVPT, DtgTabla4);
-            PrintTables(DimArrCost, DtgTablaCostos);
+                //C / F = G
+                DimArrCCUP[0, 6] = DimArrCCUP[0, 2] / DimArrCCUP[0, 5];
+                DimArrCCUP[1, 6] = DimArrCCUP[1, 2] / DimArrCCUP[1, 5];
+                DimArrCCUP[2, 6] = DimArrCCUP[2, 2] / DimArrCCUP[2, 5];
 
-            MenuTabla3y4.Enabled = true;
-            MenuRecibo.Enabled = true;
+                PrintTables(DimArrCCUP, DtgTabla2);
+                PrintTables(DimArrVIF, DtgTabla3);
+                PrintTables(DimArrVPT, DtgTabla4);
+                PrintTables(DimArrCost, DtgTablaCostos);
+
+                MenuTabla3y4.Enabled = true;
+                MenuRecibo.Enabled = true;
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("Puede que algun dato no sea valido, por favor corrigelo", "Información", MessageBoxButtons.OK, MessageBoxIcon.Question);
+                throw;
+            }
         }
 
         private void Tabla1_CellEndEdit(object sender, DataGridViewCellEventArgs e)
         {
             if (e.RowIndex >= 0 && e.ColumnIndex >= 0)
             {
-                if (decimal.TryParse(DtgTabla1.Rows[e.RowIndex].Cells[e.ColumnIndex].Value.ToString(), out decimal NewValue))
+                try
                 {
-                    DimArrDPPU[e.RowIndex, e.ColumnIndex - 1] = NewValue;
+                    if (decimal.TryParse(DtgTabla1.Rows[e.RowIndex].Cells[e.ColumnIndex].Value.ToString(), out decimal NewValue))
+                    {
+                        DimArrDPPU[e.RowIndex, e.ColumnIndex - 1] = NewValue;
+                    }
+                }
+                catch (Exception)
+                {
+                    throw;
                 }
             }
         }
@@ -209,9 +239,16 @@ namespace Costos_por_procesos_y_ordenes
         {
             if (e.RowIndex >= 0 && e.ColumnIndex >= 0)
             {
-                if (decimal.TryParse(DtgTabla2.Rows[e.RowIndex].Cells[e.ColumnIndex].Value.ToString(), out decimal NewValue))
+                try
                 {
-                    DimArrCCUP[e.RowIndex, e.ColumnIndex - 1] = NewValue;
+                    if (decimal.TryParse(DtgTabla2.Rows[e.RowIndex].Cells[e.ColumnIndex].Value.ToString(), out decimal NewValue))
+                    {
+                        DimArrCCUP[e.RowIndex, e.ColumnIndex - 1] = NewValue;
+                    }
+                }
+                catch (Exception)
+                {
+                    throw;
                 }
             }
         }
